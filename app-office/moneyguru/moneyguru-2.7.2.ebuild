@@ -25,7 +25,7 @@ DEPEND="${RDEPEND}
 	dev-python/virtualenv[${PYTHON_USEDEP}]"
 
 src_configure() {
-	virtualenv --system-site-packages env
+	virtualenv -p python3 --system-site-packages env
 	./env/bin/pip install sgmllib3k polib
 	./env/bin/python configure.py
 }
