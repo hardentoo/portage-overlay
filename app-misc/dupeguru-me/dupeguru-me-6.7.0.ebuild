@@ -3,12 +3,12 @@
 
 EAPI=5
 
-DG_EDITION=se
+DG_EDITION=me
 
 inherit dupeguru-qt4
 
-DESCRIPTION="Find duplicate files on your system"
-HOMEPAGE="http://hardcoded.net/dupeguru"
+DESCRIPTION="Find duplicate songs on your system"
+HOMEPAGE="http://hardcoded.net/dupeguru_me"
 
 LICENSE="BSD"
 SLOT="0"
