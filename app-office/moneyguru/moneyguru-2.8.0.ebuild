@@ -3,9 +3,9 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python{3_3,3_4} )
+PYTHON_COMPAT=( python3_4 )
 
-inherit eutils python-r1
+inherit eutils python-single-r1
 
 DESCRIPTION="Future-aware personal finances management"
 HOMEPAGE="http://hardcoded.net/moneyguru"
@@ -21,18 +21,20 @@ IUSE=""
 RDEPEND="${PYTHON_DEPS}
 	dev-python/PyQt4[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}
-	dev-python/sphinx[${PYTHON_USEDEP}]
-	dev-python/virtualenv[${PYTHON_USEDEP}]"
+	dev-python/sphinx[${PYTHON_USEDEP}]"
 
 src_configure() {
-	virtualenv -p python3 --system-site-packages env
-	./env/bin/pip install sgmllib3k polib
-	./env/bin/python configure.py
+	# For pip to be installed, we need to create the env without system-site-packages
+	${EPYTHON} -m venv ${WORKDIR}/env
+	${WORKDIR}/env/bin/pip install sgmllib3k polib
+	# And now, we upgrade the env with system-site-packages
+	${EPYTHON} -m venv --system-site-packages ${WORKDIR}/env
+	${WORKDIR}/env/bin/python configure.py
 }
 
 src_compile() {
-	./env/bin/python build.py
-	./env/bin/python -c "import package; package.package_arch()"
+	${WORKDIR}/env/bin/python build.py
+	${WORKDIR}/env/bin/python -c "import package; package.package_arch()"
 }
 
 src_install() {
