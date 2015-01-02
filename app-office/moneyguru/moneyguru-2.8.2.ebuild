@@ -27,6 +27,8 @@ src_configure() {
 	# For pip to be installed, we need to create the env without system-site-packages
 	${EPYTHON} -m venv ${WORKDIR}/env
 	${WORKDIR}/env/bin/pip install sgmllib3k polib
+	# This line below is because portage stable *still* hasn't updated to Python 3.4.2
+	rm ${WORKDIR}/env/lib64
 	# And now, we upgrade the env with system-site-packages
 	${EPYTHON} -m venv --system-site-packages ${WORKDIR}/env
 	${WORKDIR}/env/bin/python configure.py
