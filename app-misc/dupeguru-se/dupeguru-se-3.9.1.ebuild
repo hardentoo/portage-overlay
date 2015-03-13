@@ -1,11 +1,11 @@
-# Copyright 2014 Virgil Dupras
+# Copyright 2015 Virgil Dupras
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 
-PYTHON_COMPAT=( python3_3 )
+PYTHON_COMPAT=( python3_4 )
 
-inherit eutils python-r1
+inherit eutils python-single-r1
 
 DESCRIPTION="Find duplicate files on your system"
 HOMEPAGE="http://hardcoded.net/dupeguru"
@@ -28,22 +28,28 @@ REQUIRED_USE="
 
 RDEPEND="
 	${PYTHON_DEPS}
-	>=dev-python/PyQt5-5.3[widgets]
+	>=dev-python/PyQt5-5.3[${PYTHON_USEDEP},widgets]
 "
 DEPEND="
 	${RDEPEND}
-	>=dev-python/sphinx-1.1.3
+	>=dev-python/sphinx-1.1.3[${PYTHON_USEDEP}]
+	>=dev-python/polib-1.0.4[${PYTHON_USEDEP}]
 "
 
 src_configure() {
-	pyvenv-3.3 env
-	./env/bin/python get-pip.py
-	./env/bin/pip install -r requirements.txt
-	./env/bin/python configure.py
+	# For pip to be installed, we need to create the env without system-site-packages
+	${EPYTHON} -m venv ${WORKDIR}/env
+	${WORKDIR}/env/bin/pip install send2trash
+	# This line below is because portage stable *still* hasn't updated to Python 3.4.2
+	rm ${WORKDIR}/env/lib64
+	# And now, we upgrade the env with system-site-packages
+	${EPYTHON} -m venv --system-site-packages ${WORKDIR}/env
+	${WORKDIR}/env/bin/python configure.py
 }
 
 src_compile() {
 	./env/bin/python build.py
+	python_fix_shebang run.py
 	./env/bin/python -c "import package; package.package_arch('se')"
 }
 
