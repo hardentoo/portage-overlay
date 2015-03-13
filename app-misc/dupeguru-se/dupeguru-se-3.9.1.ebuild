@@ -11,9 +11,6 @@ DESCRIPTION="Find duplicate files on your system"
 HOMEPAGE="http://hardcoded.net/dupeguru"
 MY_P="${PN}-src-${PV}"
 
-# There are package conflicts in the Gentoo system when it comes to sip and PyQt4/PyQt5
-# We avert the problem by installing everything locally.
-# Yes, *very* inneficient, but for now, I can't think of a better solution
 SRC_URI="http://download.hardcoded.net/${MY_P}.tar.gz"
 S=${WORKDIR}
 
