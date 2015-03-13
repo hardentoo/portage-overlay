@@ -14,12 +14,8 @@ This is a [Portage overlay][overlay] to install apps from [Hardcoded Software][h
 * `dupeguru-se`
 * `dupeguru-me`
 * `dupeguru-pe`
-
-## PyQt5... not yet
-
-Latest versions of dupeGuru use PyQt5 which, on gentoo, is hard to install. So, for now, dupeGuru
-packages are outdated. There's a WIP dupeguru-se-3.9.0 ebuild being worked on (you'll need the `qt`
-overlay to make it work) but that's some very experimental stuff right there.
+* `send2trash-1.3.0` (gentoo has 1.2.0)
+* `hsaudiotag3k` (needed for `dupeguru-me`)
 
 [overlay]: https://wiki.gentoo.org/wiki/Overlay
 [hs]: http://www.hardcoded.net
