@@ -3,7 +3,7 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python3_4 )
+PYTHON_COMPAT=( python{3_3,3_4} )
 
 inherit eutils python-single-r1
 
@@ -29,28 +29,22 @@ REQUIRED_USE="
 RDEPEND="
 	${PYTHON_DEPS}
 	>=dev-python/PyQt5-5.3[${PYTHON_USEDEP},widgets]
+	>=dev-python/polib-1.0.4[${PYTHON_USEDEP}]
+	>=dev-python/send2trash-1.3.0[${PYTHON_USEDEP}]
 "
 DEPEND="
 	${RDEPEND}
 	>=dev-python/sphinx-1.1.3[${PYTHON_USEDEP}]
-	>=dev-python/polib-1.0.4[${PYTHON_USEDEP}]
 "
 
 src_configure() {
-	# For pip to be installed, we need to create the env without system-site-packages
-	${EPYTHON} -m venv ${WORKDIR}/env
-	${WORKDIR}/env/bin/pip install send2trash
-	# This line below is because portage stable *still* hasn't updated to Python 3.4.2
-	rm ${WORKDIR}/env/lib64
-	# And now, we upgrade the env with system-site-packages
-	${EPYTHON} -m venv --system-site-packages ${WORKDIR}/env
-	${WORKDIR}/env/bin/python configure.py
+	${EPYTHON} configure.py
 }
 
 src_compile() {
-	./env/bin/python build.py
+	${EPYTHON} build.py
 	python_fix_shebang run.py
-	./env/bin/python -c "import package; package.package_arch('se')"
+	${EPYTHON} -c "import package; package.package_arch('se')"
 }
 
 src_install() {
