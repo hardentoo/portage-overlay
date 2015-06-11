@@ -25,7 +25,7 @@ REQUIRED_USE="
 
 RDEPEND="
 	${PYTHON_DEPS}
-	>=dev-python/PyQt5-5.3[${PYTHON_USEDEP},widgets]
+	>=dev-python/PyQt5-5.3[${PYTHON_USEDEP},widgets,gui]
 	>=dev-python/polib-1.0.4[${PYTHON_USEDEP}]
 	>=dev-python/send2trash-1.3.0[${PYTHON_USEDEP}]
 	>=dev-python/hsaudiotag3k-1.1.3[${PYTHON_USEDEP}]
