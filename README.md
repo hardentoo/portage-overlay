@@ -14,7 +14,6 @@ This is a [Portage overlay][overlay] to install apps from [Hardcoded Software][h
 * `dupeguru-se`
 * `dupeguru-me`
 * `dupeguru-pe`
-* `send2trash-1.3.0` (gentoo has 1.2.0)
 * `hsaudiotag3k` (needed for `dupeguru-me`)
 
 [overlay]: https://wiki.gentoo.org/wiki/Overlay
