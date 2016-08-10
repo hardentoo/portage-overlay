@@ -10,13 +10,13 @@ DESCRIPTION="A globally-deduplicating backup tool"
 HOMEPAGE="http://zbackup.org/"
 SRC_URI="https://github.com/zbackup/zbackup/archive/1.4.4.tar.gz"
 
-LICENSE="GPL"
+LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~arm"
 IUSE=""
 
 DEPEND="
-	dev-libs/openssl
+	>=dev-libs/openssl-1.0
 	dev-libs/protobuf
 	app-arch/xz-utils
 	dev-libs/lzo

@@ -1,5 +1,6 @@
-# Copyright 2016 Virgil Dupras
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -14,7 +15,7 @@ MY_P="${PN}-src-${PV}"
 SRC_URI="https://download.hardcoded.net/${MY_P}.tar.gz"
 S=${WORKDIR}
 
-LICENSE="BSD"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="amd64 ~arm"
 IUSE=""
@@ -26,7 +27,7 @@ DEPEND="${RDEPEND}
 	dev-python/sphinx[${PYTHON_USEDEP}]"
 
 src_compile() {
-    # We have all our dependencies covered by the system. No need for a venv!
+	# We have all our dependencies covered by the system. No need for a venv!
 	${EPYTHON} build.py
 	${EPYTHON} package.py --arch-pkg
 }
@@ -34,11 +35,10 @@ src_compile() {
 src_install() {
 	RS=${S}/build/moneyguru-arch
 	into /
-	doicon ${WORKDIR}/images/logo_big.png
-	domenu ${WORKDIR}/debian/moneyguru.desktop
+	doicon "${WORKDIR}/images/logo_big.png"
+	domenu "${WORKDIR}/debian/moneyguru.desktop"
 	insinto /usr/share/moneyguru
 	doins -r ${RS}/*
 	fperms a+x /usr/share/moneyguru/run.py
 	dosym /usr/share/moneyguru/run.py /usr/bin/moneyguru
 }
-
