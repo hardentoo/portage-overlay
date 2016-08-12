@@ -12,7 +12,7 @@ DESCRIPTION="Read metdata (tags) of mp3, mp4, wma, ogg, flac and aiff files."
 HOMEPAGE="https://github.com/hsoft/hsaudiotag"
 SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-KEYWORDS="amd64 x86"
+KEYWORDS="amd64 x86 arm"
 LICENSE="BSD"
 SLOT="0"
 
