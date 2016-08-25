@@ -30,18 +30,9 @@ DEPEND="${RDEPEND}
 	dev-python/sphinx[${PYTHON_USEDEP}]"
 
 src_compile() {
-	# We have all our dependencies covered by the system. No need for a venv!
-	${EPYTHON} build.py
-	${EPYTHON} package.py --arch-pkg
+	emake PYTHON=${EPYTHON} all build/help
 }
 
 src_install() {
-	RS=${S}/build/dupeguru-arch
-	into /
-	doicon "${WORKDIR}/images/dgse_logo_128.png"
-	domenu "${WORKDIR}/debian/dupeguru-se.desktop"
-	insinto /usr/share/dupeguru
-	doins -r ${RS}/*
-	fperms a+x /usr/share/dupeguru/run.py
-	dosym /usr/share/dupeguru/run.py /usr/bin/dupeguru
+	emake DESTDIR="${D}" PREFIX="/usr" install
 }
