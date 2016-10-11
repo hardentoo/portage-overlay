@@ -5,7 +5,7 @@
 EAPI=5
 
 PYTHON_COMPAT=( python3_4 )
-PYTHON_REQ_USE=""
+PYTHON_REQ_USE="sqlite"
 
 inherit eutils python-single-r1
 
