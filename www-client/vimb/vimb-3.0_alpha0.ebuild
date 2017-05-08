@@ -28,6 +28,10 @@ src_unpack() {
 	mv vimb-${MYPV} ${P}
 }
 
+src_compile() {
+	emake PREFIX=/usr
+}
+
 src_install() {
-	emake PREFIX="/usr" DESTDIR="${D}" install
+	emake PREFIX=/usr DESTDIR="${D}" install
 }
