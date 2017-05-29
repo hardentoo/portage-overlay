@@ -8,7 +8,7 @@ inherit toolchain-funcs eutils
 
 DESCRIPTION="a fast, lightweight, vim-like browser based on webkit"
 HOMEPAGE="http://fanglingsu.github.io/vimb/"
-MYPV="b6ecafa5533ff5147f459847db79bd62c4760d3c"
+MYPV="3.0-alpha"
 SRC_URI="https://github.com/fanglingsu/${PN}/archive/${MYPV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
