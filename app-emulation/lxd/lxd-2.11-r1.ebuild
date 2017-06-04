@@ -107,6 +107,8 @@ ERROR_NF_NAT_MASQUERADE_IPV4="NF_NAT_MASQUERADE_IPV4: needed for network command
 ERROR_NF_NAT_MASQUERADE_IPV6="NF_NAT_MASQUERADE_IPV6: needed for network commands"
 ERROR_VXLAN="VXLAN: needed for network commands"
 
+PATCHES=("${FILESDIR}/${P}-dont-go-get.patch")
+
 # KNOWN ISSUES:
 # - Translations may not work.  I've been unsuccessful in forcing
 #   localized output.  Anyway, upstream (Canonical) doesn't install the
@@ -114,12 +116,16 @@ ERROR_VXLAN="VXLAN: needed for network commands"
 
 src_prepare() {
 	default_src_prepare
+
+	# Warn on unhandled locale changes
+	l10n_find_plocales_changes "${WORKDIR}/${P}/src/${EGO_PN}/po" "" .po
+
 	# Examples in go-lxc make our build fail.
 	rm -rf "${WORKDIR}/${P}/src/${EGO_PN}/vendor/gopkg.in/lxc/go-lxc.v2/examples" || die
 }
 
 src_compile() {
-	export GOPATH="${WORKDIR}/${P}:${PWD}/vendor"
+	export GOPATH="${WORKDIR}/${P}"
 
 	cd "${S}/src/${EGO_PN}" || die "Failed to change to deep src dir"
 
