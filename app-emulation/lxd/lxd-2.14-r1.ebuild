@@ -177,7 +177,7 @@ src_install() {
 		newinitd "${FILESDIR}"/${P}.initd lxd
 		newconfd "${FILESDIR}"/${P}.confd lxd
 
-		systemd_dounit "${FILESDIR}"/${P}.service
+		systemd_newunit "${FILESDIR}"/${P}.service ${PN}.service
 	fi
 
 	newbashcomp config/bash/lxd-client lxc
