@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python3_4 )
 PYTHON_REQ_USE="sqlite"
@@ -28,6 +28,11 @@ RDEPEND="${PYTHON_DEPS}
 DEPEND="${RDEPEND}
 	dev-python/polib[${PYTHON_USEDEP}]
 	dev-python/sphinx[${PYTHON_USEDEP}]"
+
+PATCHES=(
+    # Recent pip update in Gentoo requires us to use --user at all times, even in venvs :(
+	"${FILESDIR}/fix-pip-call-in-makefile.patch"
+)
 
 src_compile() {
 	emake PYTHON=${EPYTHON} all build/help
