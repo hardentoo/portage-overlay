@@ -16,6 +16,8 @@ Also, it provides a couple of apps I use myself.
 * `dupeguru`
 * `hsaudiotag3k` (needed for `dupeguru`)
 * [zbackup](http://zbackup.org/)
+* [lxdock](https://github.com/lxdock/lxdock)
+* [vimb](https://github.com/fanglingsu/vimb)
 
 [overlay]: https://wiki.gentoo.org/wiki/Overlay
 [hs]: http://www.hardcoded.net
