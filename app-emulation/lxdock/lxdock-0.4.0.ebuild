@@ -22,7 +22,6 @@ DEPEND="
 	>=dev-python/python-dotenv-0.6[${PYTHON_USEDEP}]
 	>=dev-python/pyyaml-3.0[${PYTHON_USEDEP}]
 	>=dev-python/voluptuous-0.9[${PYTHON_USEDEP}]
-	!>=dev-python/requests-2.16[${PYTHON_USEDEP}]
 "
 
 src_prepare() {
